@@ -57,7 +57,8 @@ savePopoutPosition(1920, 100);
 openPopout('https://example.com', { width: 600, height: 400 });
 ```
 
-`openPopout` verifies that the saved `left`/`top` fit within the current
-available screen space. If the target monitor is not connected, the window
-falls back to the primary screen.
+`openPopout` verifies that the saved `left`/`top` fall within the overall
+available desktop space, allowing negative or large coordinates for monitors
+positioned to the left, right, above, or below the primary display. If the
+target monitor is not connected, the window falls back to the primary screen.
 

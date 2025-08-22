@@ -38,7 +38,7 @@ const STORAGE_KEY = 'pf2e-popout-coordinates';
  * @param {number} left - The x-coordinate of the window.
  * @param {number} top - The y-coordinate of the window.
  */
-export function savePopoutPosition(left, top) {
+function savePopoutPosition(left, top) {
   if (typeof left !== 'number' || typeof top !== 'number') return;
   const data = { left, top };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -59,7 +59,7 @@ export function savePopoutPosition(left, top) {
  * @param {number} [options.top] - Fallback top coordinate.
  * @returns {Window|null} - Reference to the opened window or null on failure.
  */
-export function openPopout(url, options = {}) {
+function openPopout(url, options = {}) {
   const stored = localStorage.getItem(STORAGE_KEY);
   let left, top;
   if (stored) {
@@ -72,6 +72,10 @@ export function openPopout(url, options = {}) {
 
   const availWidth = window.screen?.availWidth ?? window.innerWidth;
   const availHeight = window.screen?.availHeight ?? window.innerHeight;
+  const availLeft = window.screen?.availLeft ?? 0;
+  const availTop = window.screen?.availTop ?? 0;
+  const availRight = availLeft + availWidth;
+  const availBottom = availTop + availHeight;
 
   const defaultWidth = 600;
   const defaultHeight = 400;
@@ -81,19 +85,22 @@ export function openPopout(url, options = {}) {
   if (
     typeof left !== 'number' ||
     typeof top !== 'number' ||
-    left < 0 ||
-    top < 0 ||
-    left > availWidth ||
-    top > availHeight ||
-    left + width > availWidth ||
-    top + height > availHeight
+    left + width < availLeft ||
+    top + height < availTop ||
+    left > availRight ||
+    top > availBottom
   ) {
     // Fallback to provided options or origin screen if coordinates are invalid.
-    left = options.left ?? 0;
-    top = options.top ?? 0;
+    left = options.left ?? availLeft;
+    top = options.top ?? availTop;
   }
 
   const features = [`left=${left}`, `top=${top}`, `width=${width}`, `height=${height}`];
 
   return window.open(url, options.name ?? '', features.join(','));
 }
+
+module.exports = {
+  savePopoutPosition,
+  openPopout,
+};
