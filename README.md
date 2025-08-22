@@ -1,3 +1,4 @@
+
 # PF2e-Popout
 
 A minimal utility demonstrating pop-out behaviour along with linting,
@@ -24,3 +25,35 @@ formatting, and testing setup.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+
+# PF2e Popout
+
+A minimal demonstration that opens a pop-out window and communicates back to the main window. The pop-out closes automatically when the main window reloads or closes.
+
+## Usage
+
+Open `index.html` in a browser and press **Open Popout**. The pop-out window can send random dice rolls or chat messages via `window.postMessage`. Messages are displayed in the main window. Closing or reloading the main window will also close the pop-out.
+
+# PF2e-Popout
+
+Adds a monitor icon button to PF2e actor sheets, the combat tracker, and journal sheets.
+Clicking the button pops the sheet out into a separate window.
+Helpers for opening browser windows at user-defined screen coordinates.
+
+## Usage
+
+```javascript
+import { savePopoutPosition, openPopout } from './popout.js';
+
+// Store preferred coordinates, e.g. on a second monitor.
+savePopoutPosition(1920, 100);
+
+// Open the window using the saved coordinates with automatic fallback.
+openPopout('https://example.com', { width: 600, height: 400 });
+```
+
+`openPopout` verifies that the saved `left`/`top` fit within the current
+available screen space. If the target monitor is not connected, the window
+falls back to the primary screen.
+
