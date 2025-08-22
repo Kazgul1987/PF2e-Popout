@@ -9,17 +9,22 @@ const ICON_HTML = '<i class="fas fa-tv"></i>';
 function addPopoutButton(app, html) {
   const titleElement = html.closest('.app').find('header .window-title');
   const buttonClass = 'popout-header-button';
-  if (titleElement.length === 0 || titleElement.siblings(`.${buttonClass}`).length) {
+  if (
+    titleElement.length === 0 ||
+    titleElement.siblings(`.${buttonClass}`).length
+  ) {
     return;
   }
 
-  const button = $(`<a class="${buttonClass}" title="Pop out">${ICON_HTML}</a>`);
-  button.on('click', event => {
+  const button = $(
+    `<a class="${buttonClass}" title="Pop out">${ICON_HTML}</a>`,
+  );
+  button.on('click', (event) => {
     event.preventDefault();
     if (typeof app.popOut === 'function') {
       app.popOut();
     } else {
-      app.render(true, { popout: true });
+      app.render({ force: true }, { popout: true });
     }
   });
 
@@ -31,5 +36,4 @@ function addPopoutButton(app, html) {
   }
 }
 
-HOOKS.forEach(hook => Hooks.on(hook, addPopoutButton));
-
+HOOKS.forEach((hook) => Hooks.on(hook, addPopoutButton));
