@@ -8,6 +8,10 @@
   ],
   "systems": ["pf2e"],
   "esmodules": ["popout.js", "src/popout-buttons.js"],
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" },
+    { "lang": "de", "name": "Deutsch", "path": "lang/de.json" }
+  ],
   "manifest": "https://raw.githubusercontent.com/Kazgul1987/PF2e-Popout/main/module.json",
   "download": "https://github.com/Kazgul1987/PF2e-Popout/releases/latest/download/pf2e-Popout.zip",
   "compatibility": {
