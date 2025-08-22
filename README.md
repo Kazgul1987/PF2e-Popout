@@ -1,5 +1,5 @@
 
-# PF2e-Popout
+# pf2e-popout
 
 A minimal utility demonstrating pop-out behaviour along with linting,
 formatting, and testing setup.
@@ -10,7 +10,7 @@ formatting, and testing setup.
 2. Run `npm install` to install dependencies.
 3. Use `npm test` to run tests. Ensure dependencies are installed first by running `npm install`.
 4. Use `npm run lint` to lint the code and `npm run format` to apply Prettier formatting.
-5. For Foundry VTT, install the module by pointing Foundry to the [manifest file](https://raw.githubusercontent.com/yourname/PF2e-Popout/main/module.json).
+5. For Foundry VTT, install the module by pointing Foundry to the [manifest file](https://raw.githubusercontent.com/yourname/pf2e-popout/main/module.json).
 
 ## Functionality
 
@@ -40,7 +40,7 @@ A minimal demonstration that opens a pop-out window and communicates back to the
 
 Open `index.html` in a browser and press **Open Popout**. The pop-out window can send random dice rolls or chat messages via `window.postMessage`. Messages are displayed in the main window. Closing or reloading the main window will also close the pop-out.
 
-# PF2e-Popout
+# pf2e-popout
 
 Adds a monitor icon button to PF2e actor sheets, the combat tracker, and journal sheets.
 Clicking the button pops the sheet out into a separate window.
