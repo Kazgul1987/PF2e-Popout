@@ -1,17 +1,20 @@
 const parentWindow = window.opener;
+const TRUSTED_ORIGIN = window.location.origin;
 
 document.getElementById('send-roll').addEventListener('click', () => {
   const result = Math.floor(Math.random() * 20) + 1;
-  parentWindow.postMessage({ type: 'roll', result }, '*');
+  parentWindow.postMessage({ type: 'roll', result }, TRUSTED_ORIGIN);
 });
 
 document.getElementById('send-chat').addEventListener('click', () => {
   const message = document.getElementById('chat-input').value;
-  parentWindow.postMessage({ type: 'chat', message }, '*');
+  parentWindow.postMessage({ type: 'chat', message }, TRUSTED_ORIGIN);
   document.getElementById('chat-input').value = '';
 });
 
 window.addEventListener('message', (event) => {
+  if (event.origin !== TRUSTED_ORIGIN) return;
+
   if (event.data === 'close') {
     window.close();
   }

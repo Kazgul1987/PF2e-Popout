@@ -1,4 +1,5 @@
 let popout;
+const TRUSTED_ORIGIN = window.location.origin;
 
 document.getElementById('open-popout').addEventListener('click', () => {
   if (!popout || popout.closed) {
@@ -9,6 +10,8 @@ document.getElementById('open-popout').addEventListener('click', () => {
 });
 
 window.addEventListener('message', (event) => {
+  if (event.origin !== TRUSTED_ORIGIN) return;
+
   const log = document.getElementById('log');
   if (event.data?.type === 'roll') {
     log.innerHTML += `<p>Roll: ${event.data.result}</p>`;
