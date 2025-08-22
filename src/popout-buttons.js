@@ -7,8 +7,22 @@ const HOOKS = [
 const ICON_HTML = '<i class="fas fa-tv"></i>';
 
 function addPopoutButton(app, html) {
-  const titleElement = html.closest('.app').find('header .window-title');
+  const appElement = html[0] && html[0].closest('.app');
+  if (!appElement) {
+    return;
+  }
+
   const buttonClass = 'popout-header-button';
+  const titleElement = appElement.querySelector('header .window-title');
+  if (!titleElement || titleElement.parentElement.querySelector(`.${buttonClass}`)) {
+    return;
+  }
+
+  const button = document.createElement('a');
+  button.classList.add(buttonClass);
+  button.title = 'Pop out';
+  button.innerHTML = ICON_HTML;
+  button.addEventListener('click', event => {
   if (
     titleElement.length === 0 ||
     titleElement.siblings(`.${buttonClass}`).length
@@ -28,11 +42,11 @@ function addPopoutButton(app, html) {
     }
   });
 
-  const headerButtons = html.closest('.app').find('header .header-buttons');
-  if (headerButtons.length) {
+  const headerButtons = appElement.querySelector('header .header-buttons');
+  if (headerButtons) {
     headerButtons.prepend(button);
   } else {
-    titleElement.parent().append(button);
+    titleElement.parentElement.appendChild(button);
   }
 }
 
