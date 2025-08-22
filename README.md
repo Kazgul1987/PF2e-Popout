@@ -14,13 +14,12 @@ formatting, and testing setup.
 
 ## Functionality
 
-- Exports a `popout` function from `src/index.js` that returns a message
-  indicating a pop-out was created for a given element ID.
+- Exports `savePopoutPosition` and `openPopout` from `src/index.js`. These helpers
+  store preferred window coordinates and open new windows using those saved
+  positions.
 
 ## Known Limitations
 
-- The `popout` function is a simplified example and does not create real
-  windows.
 - Only basic functionality is provided at this stage.
 
 ## License
@@ -49,7 +48,7 @@ Helpers for opening browser windows at user-defined screen coordinates.
 ## Usage
 
 ```javascript
-import { savePopoutPosition, openPopout } from './popout.js';
+import { savePopoutPosition, openPopout } from 'pf2e-popout';
 
 // Store preferred coordinates, e.g. on a second monitor.
 savePopoutPosition(1920, 100);
