@@ -9,7 +9,7 @@
   "systems": ["pf2e"],
   "esmodules": ["popout.js", "src/popout-buttons.js"],
   "manifest": "https://raw.githubusercontent.com/Kazgul1987/PF2e-Popout/main/module.json",
-  "download": "https://github.com/Kazgul1987/PF2e-Popout/releases/latest/download/module.zip",
+  "download": "https://github.com/Kazgul1987/PF2e-Popout/releases/latest/download/pf2e-Popout.zip",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
