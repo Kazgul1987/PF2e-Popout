@@ -8,8 +8,8 @@
   ],
   "systems": ["pf2e"],
   "esmodules": ["popout.js", "src/popout-buttons.js"],
-  "manifest": "https://raw.githubusercontent.com/yourname/PF2e-Popout/main/module.json",
-  "download": "https://github.com/yourname/PF2e-Popout/releases/download/v0.1.0/module.zip",
+  "manifest": "https://raw.githubusercontent.com/yKazgul1987/PF2e-Popout/main/module.json",
+  "download": "https://github.com/Kazgul1987/PF2e-Popout/releases/download/latest/module.zip",
   "minimumCoreVersion": "11",
   "compatibleCoreVersion": "11"
 }
