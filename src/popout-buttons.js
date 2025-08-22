@@ -23,11 +23,22 @@ function addPopoutButton(app, html) {
   button.title = 'Pop out';
   button.innerHTML = ICON_HTML;
   button.addEventListener('click', event => {
+  if (
+    titleElement.length === 0 ||
+    titleElement.siblings(`.${buttonClass}`).length
+  ) {
+    return;
+  }
+
+  const button = $(
+    `<a class="${buttonClass}" title="Pop out">${ICON_HTML}</a>`,
+  );
+  button.on('click', (event) => {
     event.preventDefault();
     if (typeof app.popOut === 'function') {
       app.popOut();
     } else {
-      app.render(true, { popout: true });
+      app.render({ force: true }, { popout: true });
     }
   });
 
@@ -39,5 +50,4 @@ function addPopoutButton(app, html) {
   }
 }
 
-HOOKS.forEach(hook => Hooks.on(hook, addPopoutButton));
-
+HOOKS.forEach((hook) => Hooks.on(hook, addPopoutButton));
