@@ -32,7 +32,7 @@ function addPopoutButton(app, html) {
     if (typeof app.popOut === 'function') {
       app.popOut();
     } else {
-      app.render({ force: true }, { popout: true });
+      app.render(true, { popout: true, focus: true });
     }
   });
 
