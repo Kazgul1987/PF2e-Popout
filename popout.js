@@ -45,15 +45,16 @@ export function savePopoutPosition(left, top) {
 }
 
 /**
- * Open a new window using the stored coordinates. If the coordinates are
- * outside of the available screen space (e.g. a second monitor is not
- * connected), the window falls back to the primary monitor.
+ * Open a new window using the stored coordinates. Width and height default to
+ * 600x400 when not provided. If the stored coordinates plus the window size
+ * exceed the available screen space (e.g. a second monitor is not connected),
+ * the window falls back to the provided `left`/`top` options or `0`.
  *
  * @param {string} url - URL to load in the new window.
  * @param {object} [options={}] - Optional additional features for window.open.
  * @param {string} [options.name] - Name of the window.
- * @param {number} [options.width] - Desired width of the window.
- * @param {number} [options.height] - Desired height of the window.
+ * @param {number} [options.width] - Desired width of the window. Defaults to 600.
+ * @param {number} [options.height] - Desired height of the window. Defaults to 400.
  * @param {number} [options.left] - Fallback left coordinate.
  * @param {number} [options.top] - Fallback top coordinate.
  * @returns {Window|null} - Reference to the opened window or null on failure.
@@ -72,22 +73,27 @@ export function openPopout(url, options = {}) {
   const availWidth = window.screen?.availWidth ?? window.innerWidth;
   const availHeight = window.screen?.availHeight ?? window.innerHeight;
 
+  const defaultWidth = 600;
+  const defaultHeight = 400;
+  const width = options.width ?? defaultWidth;
+  const height = options.height ?? defaultHeight;
+
   if (
     typeof left !== 'number' ||
     typeof top !== 'number' ||
     left < 0 ||
     top < 0 ||
     left > availWidth ||
-    top > availHeight
+    top > availHeight ||
+    left + width > availWidth ||
+    top + height > availHeight
   ) {
     // Fallback to provided options or origin screen if coordinates are invalid.
     left = options.left ?? 0;
     top = options.top ?? 0;
   }
 
-  const features = [`left=${left}`, `top=${top}`];
-  if (options.width) features.push(`width=${options.width}`);
-  if (options.height) features.push(`height=${options.height}`);
+  const features = [`left=${left}`, `top=${top}`, `width=${width}`, `height=${height}`];
 
   return window.open(url, options.name ?? '', features.join(','));
 }
