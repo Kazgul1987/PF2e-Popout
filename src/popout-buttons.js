@@ -2,12 +2,15 @@ const HOOKS = [
   'renderActorSheetPF2e',
   'renderCombatTracker',
   'renderJournalSheet',
+  'renderJournalPageSheet',
+  'renderJournalTextSheet',
 ];
 
 const ICON_HTML = '<i class="fas fa-tv"></i>';
 
 function addPopoutButton(app, html) {
-  const titleElement = html.closest('.app').find('header .window-title');
+  const appElement = html.closest('.app').length ? html.closest('.app') : html;
+  const titleElement = appElement.find('header .window-title, header h1, header h2').first();
   const buttonClass = 'popout-header-button';
   if (titleElement.length === 0 || titleElement.siblings(`.${buttonClass}`).length) {
     return;
@@ -23,7 +26,7 @@ function addPopoutButton(app, html) {
     }
   });
 
-  const headerButtons = html.closest('.app').find('header .header-buttons');
+  const headerButtons = appElement.find('header .header-buttons');
   if (headerButtons.length) {
     headerButtons.prepend(button);
   } else {
