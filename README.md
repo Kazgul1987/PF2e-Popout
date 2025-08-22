@@ -8,7 +8,7 @@ formatting, and testing setup.
 
 1. Clone this repository.
 2. Run `npm install` to install dependencies.
-3. Use `npm test` to run tests.
+3. Use `npm test` to run tests. Ensure dependencies are installed first by running `npm install`.
 4. Use `npm run lint` to lint the code and `npm run format` to apply Prettier formatting.
 5. For Foundry VTT, install the module by pointing Foundry to the [manifest file](https://raw.githubusercontent.com/yourname/PF2e-Popout/main/module.json).
 
