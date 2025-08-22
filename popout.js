@@ -1,4 +1,3 @@
-
 const parentWindow = window.opener;
 
 document.getElementById('send-roll').addEventListener('click', () => {
@@ -54,14 +53,25 @@ export function savePopoutPosition(left, top) {
  */
 export function openPopout(url, options = {}) {
   const stored = localStorage.getItem(STORAGE_KEY);
-  let { left, top } = stored ? JSON.parse(stored) : {};
+  let left, top;
+  if (stored) {
+    try {
+      ({ left, top } = JSON.parse(stored));
+    } catch {
+      ({ left, top } = {});
+    }
+  }
 
   const availWidth = window.screen?.availWidth ?? window.innerWidth;
   const availHeight = window.screen?.availHeight ?? window.innerHeight;
 
   if (
-    typeof left !== 'number' || typeof top !== 'number' ||
-    left < 0 || top < 0 || left > availWidth || top > availHeight
+    typeof left !== 'number' ||
+    typeof top !== 'number' ||
+    left < 0 ||
+    top < 0 ||
+    left > availWidth ||
+    top > availHeight
   ) {
     // Fallback to provided options or origin screen if coordinates are invalid.
     left = options.left ?? 0;
