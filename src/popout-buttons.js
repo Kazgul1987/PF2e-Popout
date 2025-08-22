@@ -1,3 +1,5 @@
+/* global game */
+
 const HOOKS = [
   'renderActorSheetPF2e',
   'renderCombatTracker',
@@ -25,7 +27,9 @@ function addPopoutButton(app, html) {
 
   const button = document.createElement('a');
   button.classList.add(buttonClass);
-  button.title = 'Pop out';
+  const label = game.i18n.localize('PF2E.PopOut');
+  button.title = label;
+  button.setAttribute('aria-label', label);
   button.innerHTML = ICON_HTML;
   button.addEventListener('click', (event) => {
     event.preventDefault();
