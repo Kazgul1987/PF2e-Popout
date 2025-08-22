@@ -10,6 +10,7 @@ formatting, and testing setup.
 2. Run `npm install` to install dependencies.
 3. Use `npm test` to run tests.
 4. Use `npm run lint` to lint the code and `npm run format` to apply Prettier formatting.
+5. For Foundry VTT, install the module by pointing Foundry to the [manifest file](https://raw.githubusercontent.com/yourname/PF2e-Popout/main/module.json).
 
 ## Functionality
 
@@ -25,6 +26,10 @@ formatting, and testing setup.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+Published releases include `module.json` so Foundry can install the module directly from the manifest URL above.
 
 
 # PF2e Popout
