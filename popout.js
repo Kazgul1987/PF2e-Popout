@@ -1,28 +1,56 @@
 const parentWindow = window.opener;
 const TRUSTED_ORIGIN = window.location.origin;
 
-const rollBtn = document.getElementById('send-roll');
-if (rollBtn)
-  rollBtn.addEventListener('click', () => {
-    const result = Math.floor(Math.random() * 20) + 1;
-    parentWindow.postMessage({ type: 'roll', result }, TRUSTED_ORIGIN);
-  });
-
-const chatBtn = document.getElementById('send-chat');
-if (chatBtn)
-  chatBtn.addEventListener('click', () => {
-    const message = document.getElementById('chat-input').value;
-    parentWindow.postMessage({ type: 'chat', message }, TRUSTED_ORIGIN);
-    document.getElementById('chat-input').value = '';
-  });
-
-window.addEventListener('message', (event) => {
-  if (event.origin !== TRUSTED_ORIGIN) return;
-
-  if (event.data === 'close') {
-    window.close();
+if (window.jQuery) {
+  const $rollBtn = $('#send-roll');
+  if ($rollBtn.length) {
+    $rollBtn.on('click', () => {
+      const result = Math.floor(Math.random() * 20) + 1;
+      parentWindow.postMessage({ type: 'roll', result }, TRUSTED_ORIGIN);
+    });
   }
-});
+
+  const $chatBtn = $('#send-chat');
+  if ($chatBtn.length) {
+    $chatBtn.on('click', () => {
+      const message = $('#chat-input').val();
+      parentWindow.postMessage({ type: 'chat', message }, TRUSTED_ORIGIN);
+      $('#chat-input').val('');
+    });
+  }
+
+  $(window).on('message', (event) => {
+    const e = event.originalEvent;
+    if (e.origin !== TRUSTED_ORIGIN) return;
+
+    if (e.data === 'close') {
+      window.close();
+    }
+  });
+} else {
+  const rollBtn = document.getElementById('send-roll');
+  if (rollBtn)
+    rollBtn.addEventListener('click', () => {
+      const result = Math.floor(Math.random() * 20) + 1;
+      parentWindow.postMessage({ type: 'roll', result }, TRUSTED_ORIGIN);
+    });
+
+  const chatBtn = document.getElementById('send-chat');
+  if (chatBtn)
+    chatBtn.addEventListener('click', () => {
+      const message = document.getElementById('chat-input').value;
+      parentWindow.postMessage({ type: 'chat', message }, TRUSTED_ORIGIN);
+      document.getElementById('chat-input').value = '';
+    });
+
+  window.addEventListener('message', (event) => {
+    if (event.origin !== TRUSTED_ORIGIN) return;
+
+    if (event.data === 'close') {
+      window.close();
+    }
+  });
+}
 
 const interval = setInterval(() => {
   if (!parentWindow || parentWindow.closed) {
@@ -95,7 +123,12 @@ function openPopout(url, options = {}) {
     top = options.top ?? availTop;
   }
 
-  const features = [`left=${left}`, `top=${top}`, `width=${width}`, `height=${height}`];
+  const features = [
+    `left=${left}`,
+    `top=${top}`,
+    `width=${width}`,
+    `height=${height}`,
+  ];
 
   return window.open(url, options.name ?? '', features.join(','));
 }

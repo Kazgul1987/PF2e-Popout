@@ -1,7 +1,7 @@
 let popout;
 const TRUSTED_ORIGIN = window.location.origin;
 
-document.getElementById('open-popout').addEventListener('click', () => {
+$('#open-popout').on('click', () => {
   if (!popout || popout.closed) {
     popout = window.open('popout.html', 'pf2ePopout', 'width=600,height=400');
   } else {
@@ -9,18 +9,19 @@ document.getElementById('open-popout').addEventListener('click', () => {
   }
 });
 
-window.addEventListener('message', (event) => {
-  if (event.origin !== TRUSTED_ORIGIN) return;
+$(window).on('message', (event) => {
+  const e = event.originalEvent;
+  if (e.origin !== TRUSTED_ORIGIN) return;
 
-  const log = document.getElementById('log');
-  if (event.data?.type === 'roll') {
-    log.innerHTML += `<p>Roll: ${event.data.result}</p>`;
-  } else if (event.data?.type === 'chat') {
-    log.innerHTML += `<p>Chat: ${event.data.message}</p>`;
+  const $log = $('#log');
+  if (e.data?.type === 'roll') {
+    $log.append(`<p>Roll: ${e.data.result}</p>`);
+  } else if (e.data?.type === 'chat') {
+    $log.append(`<p>Chat: ${e.data.message}</p>`);
   }
 });
 
-window.addEventListener('beforeunload', () => {
+$(window).on('beforeunload', () => {
   if (popout && !popout.closed) {
     popout.close();
   }
