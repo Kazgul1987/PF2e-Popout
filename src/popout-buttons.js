@@ -11,7 +11,8 @@ const HOOKS = [
 const ICON_HTML = '<i class="fas fa-tv"></i>';
 
 function addPopoutButton(app, html) {
-  const appElement = html[0]?.closest('.app');
+  const root = html instanceof HTMLElement ? html : html[0];
+  const appElement = root?.closest('.app');
   if (!appElement) {
     return;
   }
