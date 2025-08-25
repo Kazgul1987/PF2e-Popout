@@ -1,12 +1,14 @@
 // Fügt Actor-Sheets einen Button hinzu, der das Sheet in einem neuen Fenster öffnet
 Hooks.on("renderActorSheet", (app, html, data) => {
   if (!app.popOut) return;
+  const appHtml = html.closest(".app");
+  if (appHtml.find(".popout-window").length === 0) {
+    const popBtn = $(`<a class="popout-window"><i class="fas fa-external-link-alt"></i></a>`);
+    popBtn.attr("title", "In neuem Fenster öffnen");
+    popBtn.on("click", () => openPopout(app));
 
-  const popBtn = $(`<a class="popout-window"><i class="fas fa-external-link-alt"></i></a>`);
-  popBtn.attr("title", "In neuem Fenster öffnen");
-  popBtn.on("click", () => openPopout(app));
-
-  html.closest(".app").find(".window-title").after(popBtn);
+    appHtml.find(".window-title").after(popBtn);
+  }
 });
 
 function openPopout(app) {
