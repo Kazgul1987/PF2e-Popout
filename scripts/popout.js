@@ -14,7 +14,9 @@ function openPopout(app) {
   if (!win) return;
 
   // Übernimmt CSS/Fonts des Hauptfensters
-  win.document.head.innerHTML = document.head.innerHTML;
+  document.head
+    .querySelectorAll('link[rel="stylesheet"], style')
+    .forEach((el) => win.document.head.append(el.cloneNode(true)));
 
   // Rendert eine neue Sheet-Instanz im Popout-Fenster
   const popSheet = new app.constructor(app.object, { popOut: false });
