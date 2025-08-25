@@ -1,21 +1,14 @@
 {
-  "id": "pf2e-Popout",
+  "name": "pf2e-popout",
   "title": "PF2e Popout",
-  "description": "Adds a monitor icon button to PF2e actor sheets, the combat tracker, and journal sheets.",
-  "version": "0.1.0",
-  "authors": [
-    { "name": "PF2e Popout Contributors" }
-  ],
-  "systems": ["pf2e"],
-  "esmodules": ["popout.js", "src/popout-buttons.js"],
-  "languages": [
-    { "lang": "en", "name": "English", "path": "lang/en.json" },
-    { "lang": "de", "name": "Deutsch", "path": "lang/de.json" }
-  ],
-  "manifest": "https://raw.githubusercontent.com/Kazgul1987/PF2e-Popout/main/module.json",
-  "download": "https://github.com/Kazgul1987/PF2e-Popout/releases/latest/download/pf2e-Popout.zip",
-  "compatibility": {
-    "minimum": "13",
-    "verified": "13"
-  }
+  "description": "Öffnet PF2e-Charakterbögen in einem separaten Browserfenster.",
+  "version": "1.0.0",
+  "minimumCoreVersion": "11",
+  "compatibility": { "minimum": "11", "verified": "11" },
+  "authors": [{ "name": "Your Name" }],
+  "esmodules": ["scripts/popout.js"],
+  "styles": ["styles/popout.css"],
+  "url": "https://github.com/yourname/pf2e-popout",
+  "manifest": "https://raw.githubusercontent.com/yourname/pf2e-popout/master/module.json",
+  "download": "https://github.com/yourname/pf2e-popout/archive/master.zip"
 }

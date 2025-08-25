@@ -1,0 +1,5 @@
+.popout-window {
+  float: right;
+  cursor: pointer;
+  margin-left: 4px;
+}
