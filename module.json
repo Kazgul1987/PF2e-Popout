@@ -5,10 +5,10 @@
   "version": "1.0.0",
   "minimumCoreVersion": "11",
   "compatibility": { "minimum": "11", "verified": "11" },
-  "authors": [{ "name": "Your Name" }],
+  "authors": [{ "name": "Kazgul1987", "url": "https://github.com/Kazgul1987" }],
   "esmodules": ["scripts/popout.js"],
   "styles": ["styles/popout.css"],
-  "url": "https://github.com/yourname/pf2e-popout",
-  "manifest": "https://raw.githubusercontent.com/yourname/pf2e-popout/master/module.json",
-  "download": "https://github.com/yourname/pf2e-popout/archive/master.zip"
+  "url": "https://github.com/Kazgul1987/PF2e-Popout",
+  "manifest": "https://raw.githubusercontent.com/Kazgul1987/PF2e-Popout/main/module.json",
+  "download": "https://github.com/Kazgul1987/PF2e-Popout/releases/latest/download/PF2e-Popout.zip"
 }
